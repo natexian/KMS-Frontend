@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/34dbe519-b9bf-4cad-bed9-887329088199/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/kms-frontend",
+  "appService.deploySubpath": "."
+}
