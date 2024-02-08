@@ -82,7 +82,7 @@ export default function ColumnsTable(props) {
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "NAME") {
+                  if (cell.column.Header === "ID") {
                     data = (
                       <Flex align='center'>
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
@@ -90,25 +90,25 @@ export default function ColumnsTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "PROGRESS") {
-                    data = (
-                      <Flex align='center'>
-                        <Text
-                          me='10px'
-                          color={textColor}
-                          fontSize='sm'
-                          fontWeight='700'>
-                          {cell.value}%
-                        </Text>
-                      </Flex>
-                    );
-                  } else if (cell.column.Header === "QUANTITY") {
+                  } else if (cell.column.Header === "FIRST NAME") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "DATE") {
+                  } else if (cell.column.Header === "LAST NAME") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "DATE OF BIRTH") {
+                    data = (
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {new Date(cell.value).toDateString()}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "GENDER") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}

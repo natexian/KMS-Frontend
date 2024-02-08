@@ -13,7 +13,7 @@ function SidebarContent(props) {
   return (
     <Flex direction='column' height='100%' pt='25px' px="16px" borderRadius='30px'>
       <Flex align='center' direction='column'>
-        <div class="logo-holder logo-1">
+        <div className="logoHolder logo">
           <h3>KMS</h3>
         </div>
         <HSeparator mb='20px' />
