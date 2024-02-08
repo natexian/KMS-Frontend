@@ -6,7 +6,7 @@ import { employeeColumnsData } from 'views/admin/dataTables/variables/columnsDat
 export default function Settings() {
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/employee')
+    fetch('https://kms-backend.azurewebsites.net/api/employee')
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
