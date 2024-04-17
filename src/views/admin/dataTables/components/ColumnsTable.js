@@ -1,5 +1,5 @@
 import {
-  Flex,
+  Flex, IconButton,
   Table,
   Tbody,
   Td,
@@ -19,6 +19,7 @@ import {
 
 // Custom components
 import Card from "components/card/Card";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 export default function ColumnsTable(props) {
   const { columnsData, tableData } = props;
 
@@ -124,6 +125,36 @@ export default function ColumnsTable(props) {
                       borderColor='transparent'>
                       {data}
                     </Td>
+                  );
+                })}
+                {row.cells.map((cell, index) => {
+                  let data = cell.render("Cell");
+                  if (cell.column.Header === "Action") {
+                    data = (
+                        <>
+                          <IconButton
+                              aria-label="Edit"
+                              icon={<EditIcon />}
+                              onClick={() => console.log("Edit clicked for row", index)}
+                          />
+                          <IconButton
+                              aria-label="Delete"
+                              icon={<DeleteIcon />}
+                              onClick={() => console.log("Delete clicked for row", index)}
+                          />
+                        </>
+                    );
+                  }
+                  return (
+                      <Td
+                          {...cell.getCellProps()}
+                          key={index}
+                          fontSize={{ sm: "14px" }}
+                          minW={{ sm: "150px", md: "200px", lg: "auto" }}
+                          borderColor="transparent"
+                      >
+                        {data}
+                      </Td>
                   );
                 })}
               </Tr>

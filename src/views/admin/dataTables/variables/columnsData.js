@@ -18,5 +18,9 @@ export const employeeColumnsData = [
   {
     Header: "GENDER",
     accessor: "Gender",
+  },
+  {
+    Header: "Action",
+    accessor: "action",
   }
 ];
