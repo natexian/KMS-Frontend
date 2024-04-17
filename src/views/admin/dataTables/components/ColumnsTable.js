@@ -115,21 +115,7 @@ export default function ColumnsTable(props) {
                         {cell.value}
                       </Text>
                     );
-                  }
-                  return (
-                    <Td
-                      {...cell.getCellProps()}
-                      key={index}
-                      fontSize={{ sm: "14px" }}
-                      minW={{ sm: "150px", md: "200px", lg: "auto" }}
-                      borderColor='transparent'>
-                      {data}
-                    </Td>
-                  );
-                })}
-                {row.cells.map((cell, index) => {
-                  let data = cell.render("Cell");
-                  if (cell.column.Header === "Action") {
+                  } else if (cell.column.Header === "Action") {
                     data = (
                         <>
                           <IconButton
@@ -146,15 +132,14 @@ export default function ColumnsTable(props) {
                     );
                   }
                   return (
-                      <Td
-                          {...cell.getCellProps()}
-                          key={index}
-                          fontSize={{ sm: "14px" }}
-                          minW={{ sm: "150px", md: "200px", lg: "auto" }}
-                          borderColor="transparent"
-                      >
-                        {data}
-                      </Td>
+                    <Td
+                      {...cell.getCellProps()}
+                      key={index}
+                      fontSize={{ sm: "14px" }}
+                      minW={{ sm: "150px", md: "200px", lg: "auto" }}
+                      borderColor='transparent'>
+                      {data}
+                    </Td>
                   );
                 })}
               </Tr>
