@@ -12,7 +12,7 @@ import './styles.css';
 
 export default function EmployeeModal(props) {
 
-    const createIndustry = (payload) => {
+    const submitEmployee = (payload) => {
         console.log('payload');
         console.log(payload);
         if (props.action === 'create') {
@@ -85,7 +85,7 @@ export default function EmployeeModal(props) {
                         }}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
-                                createIndustry(values)
+                                submitEmployee(values)
                                 actions.setSubmitting(false)
                             }, 1000)
                         }}

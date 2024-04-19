@@ -18,7 +18,7 @@ import {
 } from "react-table";
 import Card from "components/card/Card";
 import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
-import IndustryModal from "../EmployeeModal";
+import EmployeeModal from "../EmployeeModal";
 export default function ColumnsTable(props) {
     const { columnsData, tableData } = props;
 
@@ -171,7 +171,7 @@ export default function ColumnsTable(props) {
                 </Tbody>
             </Table>
             {isOpen && selectedRow && (
-                <IndustryModal action={'edit'} isOpen={isOpen} onClose={onClose} row={selectedRow} />
+                <EmployeeModal action={'edit'} isOpen={isOpen} onClose={onClose} row={selectedRow} />
             )}
         </Card>
     );

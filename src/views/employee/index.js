@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { IconButton, useDisclosure } from '@chakra-ui/react';
 import { employeeColumnsData } from './components/variables/columnsData';
 import employeeData  from './components/variables/tableDataColumns.json';
-import IndustryTable from "./components/EmployeeTable";
+import EmployeeTable from "./components/EmployeeTable";
 import {AddIcon} from "@chakra-ui/icons";
-import IndustryModal from "./components/EmployeeModal";
+import EmployeeModal from "./components/EmployeeModal";
 
 export default function Employee() {
     const [employee, setEmployee] = useState([]);
@@ -28,8 +28,8 @@ export default function Employee() {
                 aria-label='Add to friends' icon={<AddIcon />}
                 style={{ marginBottom: 20, marginRight: 20, float: 'right', padding: 30 }}
             />
-            <IndustryTable columnsData={employeeColumnsData} tableData={employeeData} />
-            <IndustryModal action={'create'} isOpen={isOpen} onClose={onClose} />
+            <EmployeeTable columnsData={employeeColumnsData} tableData={employeeData} />
+            <EmployeeModal action={'create'} isOpen={isOpen} onClose={onClose} />
         </div>
     );
 }
