@@ -17,15 +17,22 @@ export default function IndustryModal(props) {
         console.log(payload);
     }
 
+    console.log('--props----');
+    console.log(props);
+
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>CREATE NEW INDUSTRY</ModalHeader>
+                {
+                    props.action === 'edit' ?
+                        <ModalHeader>UPDATE INDUSTRY</ModalHeader> :
+                        <ModalHeader>CREATE NEW INDUSTRY</ModalHeader>
+                }
                 <ModalCloseButton />
                 <ModalBody>
                     <Formik
-                        initialValues={{ firstName: '', lastName: '', email: '' }}
+                        initialValues={{ name: props.row? props.row.name : '', status: props.row? props.row.status : '' }}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
                                 createIndustry(values)
@@ -35,17 +42,17 @@ export default function IndustryModal(props) {
                     >
                         {(props) => (
                             <Form style={{ paddingRight: 10, paddingLeft: 10 }}>
-                                <Field name='firstName'>
+                                <Field name='name'>
                                     {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
+                                        <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Industry Name</FormLabel>
                                             <Input {...field} placeholder='Industry Name' />
                                         </FormControl>
                                     )}
                                 </Field>
-                                <Field name='lastName'>
+                                <Field name='status'>
                                     {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
+                                        <FormControl isInvalid={form.errors.status && form.touched.status}>
                                             <FormLabel>Status</FormLabel>
                                             <Select placeholder='Select status'>
                                                 <option>Active</option>

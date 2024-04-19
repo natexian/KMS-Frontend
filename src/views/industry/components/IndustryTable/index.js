@@ -50,7 +50,6 @@ export default function ColumnsTable(props) {
 
     const handleRowClick = (row) => {
         setSelectedRow(row.original);
-        onOpen();
     };
 
     const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -127,6 +126,7 @@ export default function ColumnsTable(props) {
                                                 <IconButton
                                                     aria-label="Edit"
                                                     icon={<EditIcon />}
+                                                    onClick={onOpen}
                                                 />
                                                 <IconButton
                                                     aria-label="Delete"
@@ -153,7 +153,7 @@ export default function ColumnsTable(props) {
                 </Tbody>
             </Table>
             {isOpen && selectedRow && (
-                <IndustryModal isOpen={isOpen} onClose={onClose} row={selectedRow} />
+                <IndustryModal action={'edit'} isOpen={isOpen} onClose={onClose} row={selectedRow} />
             )}
         </Card>
     );

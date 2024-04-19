@@ -29,7 +29,7 @@ export default function Industry() {
                 style={{ marginBottom: 20, marginRight: 20, float: 'right', padding: 30 }}
             />
             <IndustryTable columnsData={industryColumnsData} tableData={industryData} />
-            <IndustryModal isOpen={isOpen} onClose={onClose} />
+            <IndustryModal action={'create'} isOpen={isOpen} onClose={onClose} />
         </div>
     );
 }
