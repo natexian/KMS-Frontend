@@ -7,6 +7,7 @@ import {
 
 // Admin Imports
 import DataTables from "views/admin/dataTables";
+import ProjectCategory from "./views/project-category";
 
 const routes = [
   {
@@ -15,6 +16,13 @@ const routes = [
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/data-tables",
     component: DataTables,
+  },
+  {
+    name: "Project Category",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    path: "/project-category",
+    component: ProjectCategory,
   }
 ];
 
