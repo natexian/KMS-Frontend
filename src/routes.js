@@ -5,8 +5,7 @@ import {
   MdBarChart,
 } from "react-icons/md";
 
-// Admin Imports
-import DataTables from "views/admin/dataTables";
+import Employee from "./views/employee";
 
 const routes = [
   {
@@ -14,7 +13,7 @@ const routes = [
     layout: "/admin",
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/data-tables",
-    component: DataTables,
+    component: Employee,
   }
 ];
 
