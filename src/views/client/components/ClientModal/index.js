@@ -5,18 +5,18 @@ import {
     ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay, Select,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import './styles.css';
 
-export default function EmployeeTypeModal(props) {
+export default function ClientModal(props) {
 
-    const createIndustry = (payload) => {
+    const createClient = (payload) => {
         console.log('payload');
         console.log(payload);
         if (props.action === 'create') {
-            fetch('https://kms-backend.azurewebsites.net/api/employee-type', {
+            fetch('https://kms-backend.azurewebsites.net/api/client', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export default function EmployeeTypeModal(props) {
                     console.log(err.message);
                 });
         } else {
-            const url = `https://kms-backend.azurewebsites.net/api/employee-type?id=${payload.id}`;
+            const url = `https://kms-backend.azurewebsites.net/api/client?id=${payload.id}`;
 
             fetch(url, {
                 method: 'PUT',
@@ -60,14 +60,17 @@ export default function EmployeeTypeModal(props) {
         }
     }
 
+    console.log('--props----');
+    console.log(props);
+
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay />
             <ModalContent>
                 {
                     props.action === 'edit' ?
-                        <ModalHeader>UPDATE EMPLOYEE TYPE</ModalHeader> :
-                        <ModalHeader>CREATE NEW EMPLOYEE TYPE</ModalHeader>
+                        <ModalHeader>UPDATE CLIENT</ModalHeader> :
+                        <ModalHeader>CREATE NEW CLIENT</ModalHeader>
                 }
                 <ModalCloseButton />
                 <ModalBody>
@@ -75,7 +78,7 @@ export default function EmployeeTypeModal(props) {
                         initialValues={{ name: props.row? props.row.name : '', status: props.row? props.row.status : '' }}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
-                                createIndustry(values)
+                                createClient(values)
                                 actions.setSubmitting(false)
                             }, 1000)
                         }}
@@ -86,7 +89,34 @@ export default function EmployeeTypeModal(props) {
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Name</FormLabel>
-                                            <Input {...field} placeholder='Name' />
+                                            <Input {...field} placeholder='Client Name' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='description'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.description && form.touched.description}>
+                                            <FormLabel>Description</FormLabel>
+                                            <Input {...field} placeholder='Client Description' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='industry'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.industry && form.touched.industry}>
+                                            <FormLabel>Industry</FormLabel>
+                                            <Input {...field} placeholder='Client Industry' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='status'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.status && form.touched.status}>
+                                            <FormLabel>Status</FormLabel>
+                                            <Select placeholder='Select status'>
+                                                <option>Active</option>
+                                                <option>In active</option>
+                                            </Select>
                                         </FormControl>
                                     )}
                                 </Field>

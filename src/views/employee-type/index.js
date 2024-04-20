@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { IconButton, useDisclosure } from '@chakra-ui/react';
 import { employeeTypeColumnsData } from './components/variables/columnsData';
 import employeeTypeData  from './components/variables/tableDataColumns.json';
@@ -7,14 +7,14 @@ import {AddIcon} from "@chakra-ui/icons";
 import EmployeeTypeModal from "./components/EmployeeTypeModal";
 
 export default function EmployeeType() {
-    const [employeeType, setEmployeeType] = useState([]);
+    // const [employeeType, setEmployeeType] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
         fetch('https://kms-backend.azurewebsites.net/api/employee-type')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setEmployeeType(data);
+                // setEmployeeType(data);
             })
             .catch((err) => {
                 console.log(err.message);

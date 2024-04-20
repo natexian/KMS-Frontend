@@ -5,18 +5,18 @@ import {
     ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay, Select,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import './styles.css';
 
-export default function EmployeeTypeModal(props) {
+export default function ProjectModal(props) {
 
-    const createIndustry = (payload) => {
+    const createProject = (payload) => {
         console.log('payload');
         console.log(payload);
         if (props.action === 'create') {
-            fetch('https://kms-backend.azurewebsites.net/api/employee-type', {
+            fetch('https://kms-backend.azurewebsites.net/api/project', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export default function EmployeeTypeModal(props) {
                     console.log(err.message);
                 });
         } else {
-            const url = `https://kms-backend.azurewebsites.net/api/employee-type?id=${payload.id}`;
+            const url = `https://kms-backend.azurewebsites.net/api/project?id=${payload.id}`;
 
             fetch(url, {
                 method: 'PUT',
@@ -60,14 +60,17 @@ export default function EmployeeTypeModal(props) {
         }
     }
 
+    console.log('--props----');
+    console.log(props);
+
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay />
             <ModalContent>
                 {
                     props.action === 'edit' ?
-                        <ModalHeader>UPDATE EMPLOYEE TYPE</ModalHeader> :
-                        <ModalHeader>CREATE NEW EMPLOYEE TYPE</ModalHeader>
+                        <ModalHeader>UPDATE PROJECT</ModalHeader> :
+                        <ModalHeader>CREATE NEW PROJECT</ModalHeader>
                 }
                 <ModalCloseButton />
                 <ModalBody>
@@ -75,7 +78,7 @@ export default function EmployeeTypeModal(props) {
                         initialValues={{ name: props.row? props.row.name : '', status: props.row? props.row.status : '' }}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
-                                createIndustry(values)
+                                createProject(values)
                                 actions.setSubmitting(false)
                             }, 1000)
                         }}
@@ -86,7 +89,43 @@ export default function EmployeeTypeModal(props) {
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Name</FormLabel>
-                                            <Input {...field} placeholder='Name' />
+                                            <Input {...field} placeholder='Project Name' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='description'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.description && form.touched.description}>
+                                            <FormLabel>Description</FormLabel>
+                                            <Input {...field} placeholder='Project Description' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                               
+                                <Field name='status'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.status && form.touched.status}>
+                                            <FormLabel>Status</FormLabel>
+                                            <Select placeholder='Select status'>
+                                                <option>Active</option>
+                                                <option>In active</option>
+                                            </Select>
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='client'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.industry && form.touched.industry}>
+                                            <FormLabel>Client</FormLabel>
+                                            <Input {...field} placeholder='Project Industry' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='projectCategory'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.industry && form.touched.industry}>
+                                            <FormLabel>Project Category</FormLabel>
+                                            <Input {...field} placeholder='Project Industry' />
                                         </FormControl>
                                     )}
                                 </Field>

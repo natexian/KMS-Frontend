@@ -5,18 +5,18 @@ import {
     ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay, Textarea,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import './styles.css';
 
-export default function EmployeeTypeModal(props) {
+export default function ProjectCategoryModal(props) {
 
-    const createIndustry = (payload) => {
+    const submitProjectCategory = (payload) => {
         console.log('payload');
         console.log(payload);
         if (props.action === 'create') {
-            fetch('https://kms-backend.azurewebsites.net/api/employee-type', {
+            fetch('https://kms-backend.azurewebsites.net/api/project-categories', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export default function EmployeeTypeModal(props) {
                     console.log(err.message);
                 });
         } else {
-            const url = `https://kms-backend.azurewebsites.net/api/employee-type?id=${payload.id}`;
+            const url = `https://kms-backend.azurewebsites.net/api/project-categories?id=${payload.id}`;
 
             fetch(url, {
                 method: 'PUT',
@@ -58,7 +58,11 @@ export default function EmployeeTypeModal(props) {
                     console.log(err.message);
                 });
         }
+
     }
+
+    console.log('--props----');
+    console.log(props);
 
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
@@ -66,16 +70,20 @@ export default function EmployeeTypeModal(props) {
             <ModalContent>
                 {
                     props.action === 'edit' ?
-                        <ModalHeader>UPDATE EMPLOYEE TYPE</ModalHeader> :
-                        <ModalHeader>CREATE NEW EMPLOYEE TYPE</ModalHeader>
+                        <ModalHeader>UPDATE PROJECT CATEGORY</ModalHeader> :
+                        <ModalHeader>CREATE NEW PROJECT CATEGORY</ModalHeader>
                 }
                 <ModalCloseButton />
                 <ModalBody>
                     <Formik
-                        initialValues={{ name: props.row? props.row.name : '', status: props.row? props.row.status : '' }}
+                        initialValues={{
+                            name: props.row? props.row.name : '',
+                            status: props.row? props.row.status : '',
+                            description: props.row? props.row.description : ''
+                        }}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
-                                createIndustry(values)
+                                submitProjectCategory(values)
                                 actions.setSubmitting(false)
                             }, 1000)
                         }}
@@ -85,8 +93,16 @@ export default function EmployeeTypeModal(props) {
                                 <Field name='name'>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
-                                            <FormLabel>Name</FormLabel>
-                                            <Input {...field} placeholder='Name' />
+                                            <FormLabel>Project Category Name</FormLabel>
+                                            <Input {...field} placeholder='Project Category Name' />
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Field name='description'>
+                                    {({ field, form }) => (
+                                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                            <FormLabel>Description</FormLabel>
+                                            <Textarea {...field} />
                                         </FormControl>
                                     )}
                                 </Field>

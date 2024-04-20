@@ -5,18 +5,18 @@ import {
     ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import './styles.css';
 
-export default function EmployeeTypeModal(props) {
+export default function IndustryModal(props) {
 
     const createIndustry = (payload) => {
         console.log('payload');
         console.log(payload);
         if (props.action === 'create') {
-            fetch('https://kms-backend.azurewebsites.net/api/employee-type', {
+            fetch('https://kms-backend.azurewebsites.net/api/industry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export default function EmployeeTypeModal(props) {
                     console.log(err.message);
                 });
         } else {
-            const url = `https://kms-backend.azurewebsites.net/api/employee-type?id=${payload.id}`;
+            const url = `https://kms-backend.azurewebsites.net/api/industry?id=${payload.id}`;
 
             fetch(url, {
                 method: 'PUT',
@@ -60,14 +60,17 @@ export default function EmployeeTypeModal(props) {
         }
     }
 
+    console.log('--props----');
+    console.log(props);
+
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay />
             <ModalContent>
                 {
                     props.action === 'edit' ?
-                        <ModalHeader>UPDATE EMPLOYEE TYPE</ModalHeader> :
-                        <ModalHeader>CREATE NEW EMPLOYEE TYPE</ModalHeader>
+                        <ModalHeader>UPDATE INDUSTRY</ModalHeader> :
+                        <ModalHeader>CREATE NEW INDUSTRY</ModalHeader>
                 }
                 <ModalCloseButton />
                 <ModalBody>
@@ -85,8 +88,8 @@ export default function EmployeeTypeModal(props) {
                                 <Field name='name'>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
-                                            <FormLabel>Name</FormLabel>
-                                            <Input {...field} placeholder='Name' />
+                                            <FormLabel>Industry Name</FormLabel>
+                                            <Input {...field} placeholder='Industry Name' />
                                         </FormControl>
                                     )}
                                 </Field>
