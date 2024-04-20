@@ -9,7 +9,7 @@ import {
     Tr,
     useColorModeValue, useDisclosure,
 } from "@chakra-ui/react";
-import React, {useMemo, useState} from "react";
+import React, { useMemo, useState } from "react";
 import {
     useGlobalFilter,
     usePagination,
@@ -17,10 +17,10 @@ import {
     useTable,
 } from "react-table";
 import Card from "components/card/Card";
-import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import ClientModal from "../ClientModal";
 export default function ColumnsTable(props) {
-    const { columnsData, tableData } = props;
+    const { columnsData, tableData, setCurrent, setCurrentAction } = props;
 
     const columns = useMemo(() => columnsData, [columnsData]);
     const data = useMemo(() => tableData, [tableData]);
@@ -50,6 +50,8 @@ export default function ColumnsTable(props) {
 
     const handleRowClick = (row) => {
         setSelectedRow(row.original);
+        setCurrent(row.original);
+        setCurrentAction('edit');
     };
 
     const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -123,7 +125,7 @@ export default function ColumnsTable(props) {
                                                 />
                                             </>
                                         );
-                                    } else{
+                                    } else {
                                         data = (
                                             <Text color={textColor} fontSize='sm' fontWeight='700'>
                                                 {cell.value}

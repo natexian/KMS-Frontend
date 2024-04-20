@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button, FormControl, FormLabel, Input,
     Modal, ModalBody,
@@ -11,6 +11,7 @@ import { Field, Form, Formik } from 'formik';
 import './styles.css';
 
 export default function ClientModal(props) {
+    const { action, isOpen, currentRecord, onClose, setClientData } = props;
 
     const createClient = (payload) => {
         console.log('payload');
@@ -74,68 +75,61 @@ export default function ClientModal(props) {
                 }
                 <ModalCloseButton />
                 <ModalBody>
-                    <Formik
-                        initialValues={{ name: props.row? props.row.name : '', status: props.row? props.row.status : '' }}
-                        onSubmit={(values, actions) => {
-                            setTimeout(() => {
-                                createClient(values)
-                                actions.setSubmitting(false)
-                            }, 1000)
-                        }}
-                    >
-                        {(props) => (
-                            <Form style={{ paddingRight: 10, paddingLeft: 10 }}>
-                                <Field name='Name'>
-                                    {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.name && form.touched.name}>
-                                            <FormLabel>Name</FormLabel>
-                                            <Input {...field} placeholder='Client Name' />
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Field name='Description'>
-                                    {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.description && form.touched.description}>
-                                            <FormLabel>Description</FormLabel>
-                                            <Input {...field} placeholder='Client Description' />
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Field name='IndustryId'>
-                                    {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.industry && form.touched.industry}>
-                                            <FormLabel>Industry</FormLabel>
-                                            <Input {...field} placeholder='Client Industry' />
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Field name='IsActive'>
-                                    {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.status && form.touched.status}>
-                                            <FormLabel>Status</FormLabel>
-                                            <Select placeholder='Select status'>
-                                                <option>Active</option>
-                                                <option>In active</option>
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Button
-                                    mt={4}
-                                    isLoading={props.isSubmitting}
-                                    type='submit'
-                                    style={{
-                                        marginTop: 30,
-                                        float: 'right',
-                                        background: '#272776',
-                                        color: 'white',
-                                    }}
-                                >
-                                    Submit
-                                </Button>
-                            </Form>
-                        )}
-                    </Formik>
+                    {
+                        <Formik
+                            initialValues={props}
+                            onSubmit={(values, actions) => {
+                                setTimeout(() => {
+                                    createClient(values)
+                                    actions.setSubmitting(false)
+                                }, 1000)
+                            }}
+                        >
+                            {(props) => (
+                                <Form style={{ paddingRight: 10, paddingLeft: 10 }}>
+                                    <Field name='Name'>
+                                        {({ field, form }) => (
+                                            field.value = field.value === undefined ? (props.values.row ? props.values.row.Name : '') : field.value,
+                                            <FormControl isInvalid={form.errors.name && form.touched.name}>
+                                                <FormLabel>Name</FormLabel>
+                                                <Input {...field} placeholder='Client Name' />
+                                            </FormControl>
+                                        )}
+                                    </Field>
+                                    <Field name='Description'>
+                                        {({ field, form }) => (
+                                            field.value = field.value === undefined ? (props.values.row ? props.values.row.Description : '') : field.value,
+                                            <FormControl isInvalid={form.errors.description && form.touched.description}>
+                                                <FormLabel>Description</FormLabel>
+                                                <Input {...field} placeholder='Client Description' />
+                                            </FormControl>
+                                        )}
+                                    </Field>
+                                    <Field name='IndustryId'>
+                                        {({ field, form }) => (
+                                            field.value = field.value === undefined ? (props.values.row ? props.values.row.IndustryId : '') : field.value,
+                                            <FormControl isInvalid={form.errors.industry && form.touched.industry}>
+                                                <FormLabel>Industry</FormLabel>
+                                                <Input {...field} placeholder='Client Industry' />
+                                            </FormControl>
+                                        )}
+                                    </Field>
+                                    <Button
+                                        mt={4}
+                                        isLoading={props.isSubmitting}
+                                        type='submit'
+                                        style={{
+                                            marginTop: 30,
+                                            float: 'right',
+                                            background: '#272776',
+                                            color: 'white',
+                                        }}
+                                    >
+                                        Submit
+                                    </Button>
+                                </Form>
+                            )}
+                        </Formik>}
                 </ModalBody>
                 <ModalFooter>
                 </ModalFooter>
