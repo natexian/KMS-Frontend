@@ -1,0 +1,22 @@
+[
+  {
+   "id": 1,
+   "logo": "ll",
+    "name": "Client 01",
+    "description": "Client 01 - Dec",
+    "status": "Active",
+    "createdDate": "12/03/2024",
+    "lastModifiedDate": "12/03/2024",
+    "industry":"Industry 01"
+  },
+  {
+    "id": 2,
+    "logo": "ll",
+     "name": "Client 01",
+     "description": "Client 01 - Dec",
+     "status": "Active",
+     "createdDate": "12/03/2024",
+     "lastModifiedDate": "12/03/2024",
+     "industry":"Industry 01"
+   }
+]
