@@ -10,6 +10,8 @@ import DataTables from "views/admin/dataTables";
 import Industry from "./views/industry";
 import Client from "./views/client";
 import ProjectCategory from "./views/project-category";
+import Project from "./views/project";
+
 
 const routes = [
   {
@@ -39,6 +41,13 @@ const routes = [
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/project-category",
     component: ProjectCategory,
+  },
+  {
+    name: "Project",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    path: "/project",
+    component: Project,
   }
 ];
 
