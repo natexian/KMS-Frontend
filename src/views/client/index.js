@@ -7,7 +7,7 @@ import {AddIcon} from "@chakra-ui/icons";
 import ClientModal from "./components/ClientModal";
 
 export default function Client() {
-    const [client, setClient] = useState([]);
+    const [setClient] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
         fetch('https://kms-backend.azurewebsites.net/api/client')
@@ -19,7 +19,7 @@ export default function Client() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [setClient]);
 
     return (
         <div style={{ marginTop: 80 }}>
