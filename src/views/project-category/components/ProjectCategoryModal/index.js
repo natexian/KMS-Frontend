@@ -106,17 +106,6 @@ export default function ProjectCategoryModal(props) {
                                         </FormControl>
                                     )}
                                 </Field>
-                                <Field name='status'>
-                                    {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.status && form.touched.status}>
-                                            <FormLabel>Status</FormLabel>
-                                            <Select placeholder='Select status'>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
                                 <Button
                                     mt={4}
                                     isLoading={props.isSubmitting}
