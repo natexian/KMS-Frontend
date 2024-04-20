@@ -7,7 +7,7 @@ import {AddIcon} from "@chakra-ui/icons";
 import ProjectCategoryModal from "./components/ProjectCategoryModal";
 
 export default function ProjectCategory() {
-    const [projectCategory, setProjectCategory] = useState([]);
+    const [ setProjectCategory] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
         fetch('https://kms-backend.azurewebsites.net/api/project-categories')
@@ -19,7 +19,7 @@ export default function ProjectCategory() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [setProjectCategory]);
 
     return (
         <div style={{ marginTop: 80 }}>

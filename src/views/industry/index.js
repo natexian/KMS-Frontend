@@ -7,7 +7,7 @@ import {AddIcon} from "@chakra-ui/icons";
 import IndustryModal from "./components/IndustryModal";
 
 export default function Industry() {
-    const [industry, setIndustry] = useState([]);
+    const [setIndustry] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
         fetch('https://kms-backend.azurewebsites.net/api/industry')
@@ -19,7 +19,7 @@ export default function Industry() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [setIndustry]);
 
     return (
         <div style={{ marginTop: 80 }}>

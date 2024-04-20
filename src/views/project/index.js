@@ -7,7 +7,7 @@ import {AddIcon} from "@chakra-ui/icons";
 import ProjectModal from "./components/ProjectModal";
 
 export default function Project() {
-    const [project, setProject] = useState([]);
+    const [setProject] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
         fetch('https://kms-backend.azurewebsites.net/api/project')
@@ -19,7 +19,7 @@ export default function Project() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [setProject]);
 
     return (
         <div style={{ marginTop: 80 }}>
