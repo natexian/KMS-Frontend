@@ -27,7 +27,7 @@ export default function ClientModal(props) {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    return response.json();
+                    props.onClose();
                 })
                 .then((data) => {
                     console.log(data);
@@ -85,7 +85,7 @@ export default function ClientModal(props) {
                     >
                         {(props) => (
                             <Form style={{ paddingRight: 10, paddingLeft: 10 }}>
-                                <Field name='name'>
+                                <Field name='Name'>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Name</FormLabel>
@@ -93,7 +93,7 @@ export default function ClientModal(props) {
                                         </FormControl>
                                     )}
                                 </Field>
-                                <Field name='description'>
+                                <Field name='Description'>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.description && form.touched.description}>
                                             <FormLabel>Description</FormLabel>
@@ -101,7 +101,7 @@ export default function ClientModal(props) {
                                         </FormControl>
                                     )}
                                 </Field>
-                                <Field name='industry'>
+                                <Field name='IndustryId'>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.industry && form.touched.industry}>
                                             <FormLabel>Industry</FormLabel>
@@ -109,7 +109,7 @@ export default function ClientModal(props) {
                                         </FormControl>
                                     )}
                                 </Field>
-                                <Field name='status'>
+                                <Field name='IsActive'>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.status && form.touched.status}>
                                             <FormLabel>Status</FormLabel>
