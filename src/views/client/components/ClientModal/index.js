@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Button, FormControl, FormLabel, Input,
     Modal, ModalBody,
     ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay, Select,
+    ModalOverlay,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import './styles.css';
 
 export default function ClientModal(props) {
-    const { action, isOpen, currentRecord, onClose, setClientData } = props;
-
-    const createClient = (payload) => {
-        console.log('payload');
-        console.log(payload);
+    const createClient = (payload, clientId) => {
+        console.log('inside createClient', payload);
+        console.log('inside clientId', clientId);
         if (props.action === 'create') {
             fetch('https://kms-backend.azurewebsites.net/api/client', {
                 method: 'POST',
@@ -37,10 +35,10 @@ export default function ClientModal(props) {
                     console.log(err.message);
                 });
         } else {
-            const url = `https://kms-backend.azurewebsites.net/api/client?id=${payload.id}`;
+            const url = `https://kms-backend.azurewebsites.net/api/client/${clientId}`;
 
             fetch(url, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -80,7 +78,12 @@ export default function ClientModal(props) {
                             initialValues={props}
                             onSubmit={(values, actions) => {
                                 setTimeout(() => {
-                                    createClient(values)
+                                    const body = {
+                                        Name: values.Name !== undefined ? values.Name : values.row.Name,
+                                        Description: values.Description !== undefined ? values.Description : values.row.Description,
+                                        IndustryId: values.IndustryId !== undefined ? values.IndustryId : values.row.IndustryId
+                                    }
+                                    createClient(body, values.row.id)
                                     actions.setSubmitting(false)
                                 }, 1000)
                             }}
