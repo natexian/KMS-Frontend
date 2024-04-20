@@ -7,20 +7,13 @@ import {
 
 // Admin Imports
 import DataTables from "views/admin/dataTables";
+import EmployeeType from "views/employee-type";
 import Industry from "./views/industry";
 import Client from "./views/client";
 import ProjectCategory from "./views/project-category";
 import Project from "./views/project";
 
-
 const routes = [
-  {
-    name: "Employees",
-    layout: "/admin",
-    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
-    path: "/data-tables",
-    component: DataTables,
-  },
   {
     name: "Industry",
     layout: "/admin",
@@ -48,8 +41,21 @@ const routes = [
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/project",
     component: Project,
+  },
+  {
+    name: "Employees",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    path: "/data-tables",
+    component: DataTables,
+  },
+  {
+    name: "Employee Types",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit'/>,
+    path: "/employee-types",
+    component: EmployeeType,
   }
-
 ];
 
 export default routes;
