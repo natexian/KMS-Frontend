@@ -12,8 +12,6 @@ import './styles.css';
 
 export default function ClientModal(props) {
     const createClient = (payload, clientId) => {
-        console.log('inside createClient', payload);
-        console.log('inside clientId', clientId);
         if (props.action === 'create') {
             fetch('https://kms-backend.azurewebsites.net/api/client', {
                 method: 'POST',
