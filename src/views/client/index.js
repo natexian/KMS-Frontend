@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IconButton, useDisclosure } from '@chakra-ui/react';
-import { employeeColumnsData } from './components/variables/columnsData';
-import employeeData  from './components/variables/tableDataColumns.json';
-import EmployeeTable from "./components/EmployeeTable";
+import { clientColumnsData } from './components/variables/columnsData';
+import clientData  from './components/variables/tableDataColumns.json';
+import ClientTable from "./components/ClientTable";
 import {AddIcon} from "@chakra-ui/icons";
-import EmployeeModal from "./components/EmployeeModal";
+import ClientModal from "./components/ClientModal";
 
-export default function Employee() {
-    // const [employee, setEmployee] = useState([]);
+export default function Client() {
+    const [setClient] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
-        fetch('https://kms-backend.azurewebsites.net/api/employee')
+        fetch('https://kms-backend.azurewebsites.net/api/client')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                // setEmployee(data);
+                setClient(data);
             })
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [setClient]);
 
     return (
         <div style={{ marginTop: 80 }}>
@@ -28,8 +28,8 @@ export default function Employee() {
                 aria-label='Add to friends' icon={<AddIcon />}
                 style={{ marginBottom: 20, marginRight: 20, float: 'right', padding: 30 }}
             />
-            <EmployeeTable columnsData={employeeColumnsData} tableData={employeeData} />
-            <EmployeeModal action={'create'} isOpen={isOpen} onClose={onClose} />
+            <ClientTable columnsData={clientColumnsData} tableData={clientData} />
+            <ClientModal action={'create'} isOpen={isOpen} onClose={onClose} />
         </div>
     );
 }

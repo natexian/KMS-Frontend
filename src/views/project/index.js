@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IconButton, useDisclosure } from '@chakra-ui/react';
-import { employeeColumnsData } from './components/variables/columnsData';
-import employeeData  from './components/variables/tableDataColumns.json';
-import EmployeeTable from "./components/EmployeeTable";
+import { projectColumnsData } from './components/variables/columnsData';
+import projectData  from './components/variables/tableDataColumns.json';
+import ProjectTable from "./components/ProjectTable";
 import {AddIcon} from "@chakra-ui/icons";
-import EmployeeModal from "./components/EmployeeModal";
+import ProjectModal from "./components/ProjectModal";
 
-export default function Employee() {
-    // const [employee, setEmployee] = useState([]);
+export default function Project() {
+    const [setProject] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
-        fetch('https://kms-backend.azurewebsites.net/api/employee')
+        fetch('https://kms-backend.azurewebsites.net/api/project')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                // setEmployee(data);
+                setProject(data);
             })
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [setProject]);
 
     return (
         <div style={{ marginTop: 80 }}>
@@ -28,8 +28,8 @@ export default function Employee() {
                 aria-label='Add to friends' icon={<AddIcon />}
                 style={{ marginBottom: 20, marginRight: 20, float: 'right', padding: 30 }}
             />
-            <EmployeeTable columnsData={employeeColumnsData} tableData={employeeData} />
-            <EmployeeModal action={'create'} isOpen={isOpen} onClose={onClose} />
+            <ProjectTable columnsData={projectColumnsData} tableData={projectData} />
+            <ProjectModal action={'create'} isOpen={isOpen} onClose={onClose} />
         </div>
     );
 }

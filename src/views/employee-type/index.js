@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { IconButton, useDisclosure } from '@chakra-ui/react';
-import { employeeColumnsData } from './components/variables/columnsData';
-import employeeData  from './components/variables/tableDataColumns.json';
-import EmployeeTable from "./components/EmployeeTable";
+import { employeeTypeColumnsData } from './components/variables/columnsData';
+import employeeTypeData  from './components/variables/tableDataColumns.json';
+import EmployeeTypeTable from "./components/EmployeeTypeTable";
 import {AddIcon} from "@chakra-ui/icons";
-import EmployeeModal from "./components/EmployeeModal";
+import EmployeeTypeModal from "./components/EmployeeTypeModal";
 
-export default function Employee() {
-    // const [employee, setEmployee] = useState([]);
+export default function EmployeeType() {
+    // const [employeeType, setEmployeeType] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
-        fetch('https://kms-backend.azurewebsites.net/api/employee')
+        fetch('https://kms-backend.azurewebsites.net/api/employee-type')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                // setEmployee(data);
+                // setEmployeeType(data);
             })
             .catch((err) => {
                 console.log(err.message);
@@ -28,8 +28,8 @@ export default function Employee() {
                 aria-label='Add to friends' icon={<AddIcon />}
                 style={{ marginBottom: 20, marginRight: 20, float: 'right', padding: 30 }}
             />
-            <EmployeeTable columnsData={employeeColumnsData} tableData={employeeData} />
-            <EmployeeModal action={'create'} isOpen={isOpen} onClose={onClose} />
+            <EmployeeTypeTable columnsData={employeeTypeColumnsData} tableData={employeeTypeData} />
+            <EmployeeTypeModal action={'create'} isOpen={isOpen} onClose={onClose} />
         </div>
     );
 }

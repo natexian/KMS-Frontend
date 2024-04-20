@@ -1,0 +1,14 @@
+[
+  {
+   "id": 1,
+    "name": "Retail",
+    "status": "Active",
+    "createdDate": "12/03/2024"
+  },
+  {
+    "id": 2,
+    "name": "Sports",
+    "status": "In-active",
+    "createdDate": "12/03/2024"
+  }
+]
