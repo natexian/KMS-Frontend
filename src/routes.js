@@ -7,6 +7,7 @@ import {
 
 // Admin Imports
 import DataTables from "views/admin/dataTables";
+import ProjectCategory from "./views/project-category";
 import Industry from "./views/industry";
 import Client from "./views/client";
 
@@ -31,7 +32,14 @@ const routes = [
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/client",
     component: Client,
-  }
+  },
+  {
+    name: "Project Category",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit'/>,
+    path: "/project-category",
+    component: ProjectCategory,
+  },
 ];
 
 export default routes;
