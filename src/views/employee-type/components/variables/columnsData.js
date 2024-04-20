@@ -8,10 +8,6 @@ export const employeeTypeColumnsData = [
     accessor: "name",
   },
   {
-    Header: "STATUS",
-    accessor: "status",
-  },
-  {
     Header: "CREATED DATE",
     accessor: "createdDate",
   },

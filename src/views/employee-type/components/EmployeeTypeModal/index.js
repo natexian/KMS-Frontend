@@ -60,9 +60,6 @@ export default function EmployeeTypeModal(props) {
         }
     }
 
-    console.log('--props----');
-    console.log(props);
-
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay />
@@ -90,17 +87,6 @@ export default function EmployeeTypeModal(props) {
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Name</FormLabel>
                                             <Input {...field} placeholder='Name' />
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Field name='status'>
-                                    {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.status && form.touched.status}>
-                                            <FormLabel>Status</FormLabel>
-                                            <Select placeholder='Select status'>
-                                                <option>Active</option>
-                                                <option>In active</option>
-                                            </Select>
                                         </FormControl>
                                     )}
                                 </Field>

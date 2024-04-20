@@ -108,12 +108,6 @@ export default function ColumnsTable(props) {
                                                 {cell.value}
                                             </Text>
                                         );
-                                    } else if (cell.column.Header === "STATUS") {
-                                        data = (
-                                            <Text color={textColor} fontSize='sm' fontWeight='700'>
-                                                {cell.value}
-                                            </Text>
-                                        );
                                     } else if (cell.column.Header === "CREATED DATE") {
                                         data = (
                                             <Text color={textColor} fontSize='sm' fontWeight='700'>
