@@ -15,6 +15,7 @@ ReactDOM.render(
 					<Switch>
 						<Route path={`/admin`} component={AdminLayout} />
 						<Redirect from='/' to='/admin/data-tables' />
+						<Redirect from='/' to='/industry' />
 					</Switch>
 				</HashRouter>
 			</ThemeEditorProvider>
