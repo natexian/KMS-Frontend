@@ -49,6 +49,14 @@ const routes = [
     path: "/project",
     component: Project,
   }
+  },
+  {
+    name: "Project Category",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit'/>,
+    path: "/project-category",
+    component: ProjectCategory,
+  },
 ];
 
 export default routes;
