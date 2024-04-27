@@ -5,15 +5,15 @@ export const industryColumnsData = [
   },
   {
     Header: "NAME",
-    accessor: "name",
+    accessor: "Name",
   },
   {
     Header: "STATUS",
-    accessor: "status",
+    accessor: "IsActive",
   },
   {
     Header: "CREATED DATE",
-    accessor: "createdDate",
+    accessor: "CreatedOn",
   },
   {
     Header: "Action",
