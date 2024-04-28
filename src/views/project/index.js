@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { IconButton, useDisclosure } from '@chakra-ui/react';
-import { industryColumnsData } from './components/variables/columnsData';
-import IndustryTable from "./components/IndustryTable";
+import { projectColumnsData } from './components/variables/columnsData';
+import ProjectTable from "./components/ProjectTable";
 import {AddIcon} from "@chakra-ui/icons";
-import IndustryModal from "./components/IndustryModal";
+import ProjectModal from "./components/ProjectModal";
 
-export default function Industry() {
-
-    const [industry, setIndustry] = useState([]);
-    const [currentIndustry, setCurrentIndustry] = useState();
+export default function Project() {
+    const [projects, setProject] = useState([]);
+    const [currentProject, setCurrentProject] = useState();
     const [currentAction, setCurrentAction] = useState('create');
-
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
-        fetch('https://kms-backend.azurewebsites.net/api/industry')
+        fetch('https://kms-backend.azurewebsites.net/api/project')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                setIndustry(data);
+                setProject(data);
             })
             .catch((err) => {
                 console.log(err.message);
             });
-    }, [setIndustry]);
+    }, [setProject]);
 
     return (
         <div style={{ marginTop: 80 }}>
@@ -31,8 +29,8 @@ export default function Industry() {
                 aria-label='Add to friends' icon={<AddIcon />}
                 style={{ marginBottom: 20, marginRight: 20, float: 'right', padding: 30 }}
             />
-            <IndustryTable columnsData={industryColumnsData} tableData={industry} setCurrent={setCurrentIndustry} setCurrentAction={setCurrentAction} />
-            <IndustryModal action={'create'} isOpen={isOpen} onClose={onClose} setIndustry={setIndustry} currentRecord={currentIndustry}/>
+            <ProjectTable columnsData={projectColumnsData} tableData={projects} setCurrent={setCurrentProject} setCurrentAction={setCurrentAction}/>
+            <ProjectModal action={currentAction} isOpen={isOpen} onClose={onClose} setClientData={setProject} currentRecord={currentProject} />
         </div>
     );
 }
