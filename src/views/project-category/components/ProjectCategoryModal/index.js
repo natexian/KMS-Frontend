@@ -95,6 +95,7 @@ export default function ProjectCategoryModal(props) {
                             <Form style={{ paddingRight: 10, paddingLeft: 10 }}>
                                 <Field name='Name'>
                                     {({ field, form }) => (
+                                        // eslint-disable-next-line no-sequences
                                         field.value = field.value === undefined ? (props.values.row ? props.values.row.Name : '') : field.value,
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Project Category Name</FormLabel>
@@ -104,6 +105,7 @@ export default function ProjectCategoryModal(props) {
                                 </Field>
                                 <Field name='Description'>
                                     {({ field, form }) => (
+                                        // eslint-disable-next-line no-sequences
                                         field.value = field.value === undefined ? (props.values.row ? props.values.row.Description : '') : field.value,
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Description</FormLabel>

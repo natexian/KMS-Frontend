@@ -96,6 +96,7 @@ export default function ProjectModal(props) {
                             <Form style={{ paddingRight: 10, paddingLeft: 10 }}>
                                 <Field name='Name'>
                                     {({ field, form }) => (
+                                        // eslint-disable-next-line no-sequences
                                         field.value = field.value === undefined ? (props.values.row ? props.values.row.Name : '') : field.value,
                                         <FormControl isInvalid={form.errors.name && form.touched.name}>
                                             <FormLabel>Name</FormLabel>
@@ -105,6 +106,7 @@ export default function ProjectModal(props) {
                                 </Field>
                                 <Field name='Description'>
                                     {({ field, form }) => (
+                                        // eslint-disable-next-line no-sequences
                                         field.value = field.value === undefined ? (props.values.row ? props.values.row.Description : '') : field.value,
                                         <FormControl isInvalid={form.errors.description && form.touched.description}>
                                             <FormLabel>Description</FormLabel>
@@ -115,6 +117,7 @@ export default function ProjectModal(props) {
                             
                                 <Field name='ClientId'>
                                     {({ field, form }) => (
+                                        // eslint-disable-next-line no-sequences
                                         field.value = field.value === undefined ? (props.values.row ? props.values.row.ClientId : '') : field.value,
                                         <FormControl isInvalid={form.errors.industry && form.touched.industry}>
                                             <FormLabel>Client</FormLabel>
@@ -124,6 +127,7 @@ export default function ProjectModal(props) {
                                 </Field>
                                 <Field name='ProjectCategoryId'>
                                     {({ field, form }) => (
+                                        // eslint-disable-next-line no-sequences
                                         field.value = field.value === undefined ? (props.values.row ? props.values.row.ProjectCategoryId : '') : field.value,
                                         <FormControl isInvalid={form.errors.industry && form.touched.industry}>
                                             <FormLabel>Project Category</FormLabel>
