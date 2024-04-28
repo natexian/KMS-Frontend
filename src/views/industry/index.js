@@ -9,7 +9,7 @@ export default function Industry() {
 
     const [industry, setIndustry] = useState([]);
     const [currentIndustry, setCurrentIndustry] = useState();
-    const [currentAction, setCurrentAction] = useState('create');
+    const [, setCurrentAction] = useState('create');
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     useEffect(() => {
